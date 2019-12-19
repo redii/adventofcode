@@ -13,20 +13,24 @@ func main() {
 	part2(input)
 }
 
-func getInput() ([]string) {
+func getInput() ([]int) {
+	var result []int
 	content, err := ioutil.ReadFile("input")
 	if err != nil {
     fmt.Printf("Error while reading File.\n")
 	}
 	input := strings.Split(string(content), "\n")
-	return input
+	for _, element := range input {
+		temp, _ := strconv.Atoi(element)
+		result = append(result, temp)
+	}
+	return result
 }
 
 
-func part1(input []string) {
+func part1(input []int) {
 	var result int = 0
-	for _, element := range input {
-		value, _ := strconv.Atoi(element)
+	for _, value := range input {
 		value = value/3
 		if (value >= 2) {
 			value = value-2
@@ -36,10 +40,9 @@ func part1(input []string) {
 	fmt.Printf("Result Part1: %v\n", result)
 }
 
-func part2(input []string) {
+func part2(input []int) {
 	result := 0
-	for _, element := range input {
-		value,_ := strconv.Atoi(element)
+	for _, value := range input {
 		fuel := recursiveCalc(value)
 		result = result + fuel
 	}
