@@ -8,9 +8,18 @@ import (
 )
 
 func main() {
-	input := readNumbers("input")
+	input := getInput()
 	part1(input)
 	part2(input)
+}
+
+func getInput() ([]string) {
+	content, err := ioutil.ReadFile("input")
+	if err != nil {
+    fmt.Printf("Error while reading File.\n")
+	}
+	input := strings.Split(string(content), "\n")
+	return input
 }
 
 func part1(input []int) {
@@ -26,19 +35,4 @@ func part1(input []int) {
 
 func part2(input []int) {
 	fmt.Printf("Result Part2: %v\n", input[0])
-}
-
-func readNumbers(filename string) []int {
-	file, _ := os.Open(filename)
-	defer file.Close()
-
-	scanner := bufio.NewScanner(file)
-	scanner.Split(bufio.ScanWords)
-
-	var values []int
-	for scanner.Scan() {
-		value, _ := strconv.Atoi(scanner.Text())
-		values = append(values, value)
-	}
-	return values
 }

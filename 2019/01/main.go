@@ -8,13 +8,18 @@ import (
 )
 
 func main() {
+	input := getInput()
+	part1(input)
+	part2(input)
+}
+
+func getInput() ([]string) {
 	content, err := ioutil.ReadFile("input")
 	if err != nil {
     fmt.Printf("Error while reading File.\n")
 	}
-	lines := strings.Split(string(content), "\n")
-	part1(lines)
-	part2(lines)
+	input := strings.Split(string(content), "\n")
+	return input
 }
 
 
