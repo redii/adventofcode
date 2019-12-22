@@ -19,7 +19,7 @@ func getInput() ([]int) {
 	if err != nil {
     fmt.Printf("Error while reading File.\n")
 	}
-	input := strings.Split(string(content), "\n")
+	input := strings.Split(string(content), ",")
 	for _, element := range input {
 		temp, _ := strconv.Atoi(element)
 		result = append(result, temp)
@@ -28,20 +28,22 @@ func getInput() ([]int) {
 }
 
 func part1(input []int) {
+	input[1], input[2] = 12, 2
 	index := 0
-	for index < len(input)-2 {
+	for {
 		action := input[index]
-		value1 := input[input[index+1]]
-		value2 := input[input[index+2]]
-		switch action {
-		case 0:
-			input[input[index+3]] = value1 + value2
-		case 1:
-			input[input[index+3]] = value1 * value2
-
+		if action == 99 {
+			break
 		}
-
-		fmt.Printf("action %v\nvalue1 %v\nvalue2 %v\n\n", action, value1, value2, )
+		a := input[index+1]
+		b := input[index+2]
+		c := input[index+3]
+		switch action {
+		case 1:
+			input[c] = input[a] + input[b]
+		case 2:
+			input[c] = input[a] * input[b]
+		}
 		index = index + 4
 	}
 	fmt.Printf("Result Part1: %v\n", input[0])
