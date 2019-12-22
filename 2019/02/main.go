@@ -27,7 +27,9 @@ func getInput() ([]int) {
 	return result
 }
 
-func part1(input []int) {
+func part1(program []int) {
+	input := make([]int, len(program))
+	copy(input, program)
 	input[1], input[2] = 12, 2
 	index := 0
 	for {
@@ -50,5 +52,61 @@ func part1(input []int) {
 }
 
 func part2(input []int) {
-	fmt.Printf("Result Part2: %v\n", input[0])
+	for noun := 0; noun < 100; noun++ {
+		for verb := 0; verb < 100; verb++ {
+			result := emulate(input, noun, verb)
+			if (result == 19690720) {
+				fmt.Printf("Result Part2: %v\n", 100*noun+verb)
+				return
+			}
+		}
+	}
+	fmt.Println("Result Part2: none")
 }
+
+func emulate(program []int, noun, verb int) (result int) {
+	input := make([]int, len(program))
+	copy(input, program)
+	input[1], input[2] = noun, verb
+	index := 0
+	for {
+		action := input[index]
+		if action == 99 {
+			break
+		}
+		a := input[index+1]
+		b := input[index+2]
+		c := input[index+3]
+		switch action {
+		case 1:
+			input[c] = input[a] + input[b]
+		case 2:
+			input[c] = input[a] * input[b]
+		}
+		index = index + 4
+	}
+	return input[0]
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
