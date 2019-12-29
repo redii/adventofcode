@@ -71,9 +71,7 @@ func emulate(program []int, noun, verb int) (result int) {
 	index := 0
 	for {
 		action := input[index]
-		if action == 99 {
-			break
-		}
+		if action == 99 { break }
 		a := input[index+1]
 		b := input[index+2]
 		c := input[index+3]
@@ -82,6 +80,8 @@ func emulate(program []int, noun, verb int) (result int) {
 			input[c] = input[a] + input[b]
 		case 2:
 			input[c] = input[a] * input[b]
+		default:
+			fmt.Println("Error while emulating")
 		}
 		index = index + 4
 	}
