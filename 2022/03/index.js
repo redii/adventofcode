@@ -30,9 +30,9 @@ const fs = require("fs")
 	// PART 2
 	let sumTwo = 0
 	for (let i = 0; i < rucksacks.length / 3; i += 1) {
-		const group = rucksacks.slice(i * 3, i * 3 + 3)
+		const offset = i * 3
+		const group = rucksacks.slice(offset, offset + 3)
 		let foundChars = []
-
 		for (const rucksack of group) {
 			const rucksackChars = [...rucksack]
 			if (!foundChars.length) {
@@ -40,9 +40,7 @@ const fs = require("fs")
 					if (!foundChars.includes(char)) foundChars.push(char)
 				}
 			} else {
-				for (const [index, char] of foundChars.entries()) {
-					foundChars = foundChars.filter((c) => rucksackChars.includes(c))
-				}
+				foundChars = foundChars.filter((c) => rucksackChars.includes(c))
 			}
 		}
 		const charCodeSubstract = foundChars[0] === foundChars[0].toLowerCase() ? 96 : 38
