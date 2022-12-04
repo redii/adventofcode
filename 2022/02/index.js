@@ -21,29 +21,27 @@ const matchUps = [
 	[6, 0, 3],
 ]
 
-;(async () => {
-	const data = fs.readFileSync("input", { encoding: "utf8" })
-	const rounds = data.split("\n")
+const data = fs.readFileSync("input", { encoding: "utf8" })
+const rounds = data.split("\n")
 
-	// PART 1
-	let scoreOne = 0
-	for (const round of rounds) {
-		const inputs = round.split(" ")
-		const opValue = rps[inputs[0]]
-		const myValue = rps[inputs[1]]
-		scoreOne += matchUps[opValue - 1][myValue - 1] + myValue
-	}
-	console.log("PART 1:", scoreOne)
+// PART 1
+let scoreOne = 0
+for (const round of rounds) {
+	const inputs = round.split(" ")
+	const opValue = rps[inputs[0]]
+	const myValue = rps[inputs[1]]
+	scoreOne += matchUps[opValue - 1][myValue - 1] + myValue
+}
+console.log("PART 1:", scoreOne)
 
-	// PART 2
-	let scoreTwo = 0
-	for (const round of rounds) {
-		const inputs = round.split(" ")
-		const opValue = rps[inputs[0]]
-		const matchResult = ldw[inputs[1]]
-		matchUps[opValue - 1].forEach((v, i) => {
-			if (v === matchResult) scoreTwo += matchResult + i + 1
-		})
-	}
-	console.log("PART 2:", scoreTwo)
-})()
+// PART 2
+let scoreTwo = 0
+for (const round of rounds) {
+	const inputs = round.split(" ")
+	const opValue = rps[inputs[0]]
+	const matchResult = ldw[inputs[1]]
+	matchUps[opValue - 1].forEach((v, i) => {
+		if (v === matchResult) scoreTwo += matchResult + i + 1
+	})
+}
+console.log("PART 2:", scoreTwo)
