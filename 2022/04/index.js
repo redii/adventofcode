@@ -11,12 +11,12 @@ for (const pair of pairs) {
 	const second = spans[1].split("-").map(Number)
 
 	if (first[0] === second[0] || first[1] === second[1]) {
-		counterOne += 1
+		counterOne++
 	} else {
 		if (first[0] < second[0]) {
-			if (first[1] > second[1]) counterOne += 1
+			if (first[1] > second[1]) counterOne++
 		} else {
-			if (second[1] > first[1]) counterOne += 1
+			if (second[1] > first[1]) counterOne++
 		}
 	}
 }
@@ -33,7 +33,7 @@ for (const pair of pairs) {
 		(first[0] <= second[0] && first[1] >= second[0]) ||
 		(first[0] >= second[0] && first[0] <= second[1])
 	) {
-		counterTwo += 1
+		counterTwo++
 	}
 }
 console.log("PART 2:", counterTwo)
