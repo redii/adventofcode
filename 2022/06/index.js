@@ -18,7 +18,7 @@ for (i = 0; i < chars.length; i++) {
 	const charsToCheck = chars.slice(i, i + 14)
 	const charsToCheckSet = new Set(charsToCheck)
 	if (charsToCheckSet.size === charsToCheck.length) {
-		console.log("PART 1:", i + 14)
+		console.log("PART 2:", i + 14)
 		break
 	}
 }
